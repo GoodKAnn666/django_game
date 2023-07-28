@@ -70,20 +70,20 @@ class GamesShorts(models.Model):
         verbose_name = "Кадр из игры"
         verbose_name_plural = "Кадры из игры"
 
-class RatingStar(models.Model):
+class TopReating(models.Model):
     value = models.SmallIntegerField("Значение", default=0)
 
     def __str__(self):
         return self.value
 
     class Meta:
-        verbose_name = "Звезда рейтинга"
-        verbose_name_plural = "Звезды рейтинга"
+        verbose_name = "Топ рейтинга"
+        verbose_name_plural = "Топы рейтинга"
 
 class Rating(models.Model):
     ip = models.CharField("IP адрес", max_length=15)
-    star = models.ForeignKey(RatingStar, on_delete=models.CASCADE, verbose_name="звезда")
-    games = models.ForeignKey(Games, on_delete=models.CharField, verbose_name="игра")
+    star = models.ForeignKey(TopReating, on_delete=models.CASCADE, verbose_name="звезда")
+    games = models.ForeignKey(Games, on_delete=models.CASCADE, verbose_name="игра")
 
     def __str__(self):
         return f"{self.star} - {self.games}"
