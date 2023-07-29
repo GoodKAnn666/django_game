@@ -84,7 +84,7 @@ class TopReating(models.Model):
 
 class Rating(models.Model):
     ip = models.CharField("IP адрес", max_length=15)
-    star = models.ForeignKey(TopReating, on_delete=models.CASCADE, verbose_name="звезда")
+    star = models.ForeignKey(TopReating, on_delete=models.CASCADE, verbose_name="топ")
     games = models.ForeignKey(Games, on_delete=models.CASCADE, verbose_name="игра")
 
     def __str__(self):
