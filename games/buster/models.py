@@ -38,12 +38,14 @@ class Genre(models.Model):
         verbose_name_plural = "Жанры"
 
 class Games(models.Model):
-    title = models.CharField("Название", max_length=100)
+    title = models.CharField("Название игры", max_length=100)
+    tagline = models.CharField("Слоган", max_length=100, default='')
     description = models.TextField("Описание")
-    platforms = models.CharField("Название", max_length=20, default="Windows")
-    engine = models.CharField("Название", max_length=100)
-    preview = models.ImageField("", upload_to="buster/")
-    year = models.PositiveSmallIntegerField("Дата выхода", default=2012)
+    platforms = models.CharField("Платформа", max_length=20, default="Windows")
+    engine = models.CharField("Двигатель", max_length=100)
+    preview = models.ImageField("Превью", upload_to="buster/")
+    developers = models.ManyToManyField(Developers, verbose_name="разработчик", related_name="games_deveopers")
+    year = models.PositiveSmallIntegerField("Дата выхода")
     genres = models.ManyToManyField(Genre, verbose_name="жанры")
     budget = models.PositiveIntegerField("Бюджет", default=0, help_text="указывать сумму в $")
     category = models.ForeignKey(Category, verbose_name="Категория", on_delete=models.SET_NULL, null=True)
